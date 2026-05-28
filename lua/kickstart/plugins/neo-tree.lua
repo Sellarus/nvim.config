@@ -16,11 +16,27 @@ vim.pack.add(plugins)
 vim.keymap.set('n', '\\', '<Cmd>Neotree reveal<CR>', { desc = 'NeoTree reveal', silent = true })
 
 require('neo-tree').setup {
+  close_if_last_window = true,
   filesystem = {
     window = {
+      position = 'left',
+      width = 26,
       mappings = {
         ['\\'] = 'close_window',
       },
     },
   },
 }
+
+-- auto open when terminal is wide enough
+vim.api.nvim_create_autocmd('VimEnter', {
+  desc = 'Always open Neo-tree on startup if terminal is wide enough',
+  callback = function()
+    local min_width = 120 -- Set your desired minimum terminal width here
+
+    if vim.o.columns >= min_width then
+      -- vim.schedule ensures Neovim finishes rendering the UI first
+      vim.schedule(function() vim.cmd 'Neotree show' end)
+    end
+  end,
+})
