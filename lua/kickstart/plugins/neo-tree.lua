@@ -40,3 +40,11 @@ vim.api.nvim_create_autocmd('VimEnter', {
     end
   end,
 })
+
+-- set as unlisted buffer
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "neo-tree",
+  callback = function()
+    vim.bo.buflisted = false
+  end,
+})
