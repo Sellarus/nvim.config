@@ -104,6 +104,9 @@ do
   --  See `:help hlsearch`
   vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 
+  -- custom keymap for buffer navigation
+  vim.keymap.set('n', 'gb', '<cmd>bn<CR>')
+
   -- Diagnostic Config & Keymaps
   --  See `:help vim.diagnostic.Opts`
   vim.diagnostic.config {
